@@ -6,7 +6,6 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "gradio>=5.34.1",
-    "openai>=1.88.0",
     "openai-agents>=0.0.19",
     "python-dotenv>=1.1.0",
     "sendgrid>=6.12.4",
