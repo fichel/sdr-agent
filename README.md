@@ -107,8 +107,8 @@ sdr-agent/
 │   ├── app.py                 # Main entry point
 │   ├── sales_manager_agent.py # Orchestration logic
 │   └── email_agent.py         # Email formatting & sending
-├── requirements.txt           # Dependencies
-├── pyproject.toml            # Project config
+├── pyproject.toml            # Project config & dependencies
+├── uv.lock                   # Dependency lock file
 └── README.md                 # You are here!
 ```
 
