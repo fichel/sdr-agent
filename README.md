@@ -91,7 +91,8 @@ This system follows a hierarchical agent pattern:
 
 ```
 Web UI → Sales Manager Agent → [Sales Rep Agent 1, 2, 3] → Email Agent → SendGrid → 📧
-````
+```
+
 - **Gradio Interface**: Modern web UI for easy interaction
 - **Sales Manager**: Orchestrates the whole show, tries all three sales approaches
 - **Sales Reps**: Each has a unique personality and writing style (Professional, Witty, Concise)
@@ -140,15 +141,18 @@ The Gradio interface can be customized in `src/app.py`:
 - Modify the layout and components
 
 ## 📁 Project Structure
+
+```
 sdr-agent/
 ├── src/
-│ ├── app.py # Gradio web interface & main entry point
-│ ├── sales_manager_agent.py # Orchestration logic with dynamic prompting
-│ └── email_agent.py # Email formatting & sending with env vars
-├── pyproject.toml # Project config & dependencies
-├── uv.lock # Dependency lock file
-├── .env.example # Environment variables template
-└── README.md # You are here!
+│   ├── app.py                 # Gradio web interface & main entry point
+│   ├── sales_manager_agent.py # Orchestration logic with dynamic prompting
+│   └── email_agent.py         # Email formatting & sending with env vars
+├── pyproject.toml            # Project config & dependencies
+├── uv.lock                   # Dependency lock file
+├── .env.example              # Environment variables template
+└── README.md                 # You are here!
+```
 
 ## 🤝 Contributing
 
