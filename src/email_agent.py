@@ -19,7 +19,9 @@ def create_email_agent(
         Send out an email with the given subject and HTML body to sales prospect
         """
         sg = sendgrid.SendGridAPIClient(api_key=os.environ.get("SENDGRID_API_KEY"))
-        from_email = Email("fichel@gmail.com")  # Keep sender static for SendGrid
+        from_email = Email(
+            os.environ.get("SENDGRID_FROM_EMAIL", "sales@yourcompany.com")
+        )
 
         # Use dynamic recipient info or fallback to parameter
         target_email = recipient_email or to or "prospect@example.com"
