@@ -1,6 +1,6 @@
 # 🤖 SDR Agent: Your AI-Powered Sales Email Dream Team
 
-Welcome to the future of cold outreach! This isn't just another email automation tool – it's a sophisticated AI agent system that's about to revolutionize how you generate sales emails. Think of it as having a whole sales team working 24/7, except they never need coffee breaks and they're powered by cutting-edge AI.
+Welcome to the future of cold outreach! This isn't just another email automation tool – it's a sophisticated AI agent system with a modern web interface that revolutionizes how you generate personalized sales emails. Think of it as having a whole sales team working 24/7, except they never need coffee breaks and they're powered by cutting-edge AI.
 
 ## 🎯 What Does This Thing Actually Do?
 
@@ -13,6 +13,13 @@ Meet your new sales squad:
 - **📧 Email Agent**: The closer. Formats everything perfectly and hits send via SendGrid
 
 The system generates multiple email variations, picks the best one, and sends it out. It's like having a focus group, copywriter, and email marketing specialist all rolled into one.
+
+## ✨ New Features
+
+- **🖥️ Modern Web Interface**: Beautiful Gradio UI replaces the old command-line interface
+- **🎯 Dynamic Personalization**: Fully customizable company, signer, and prospect information
+- **📊 Real-time Progress**: Watch your AI agents work with live progress indicators
+- **🔧 Flexible Configuration**: Environment variables for easy deployment and customization
 
 ## 🚀 Quick Start (Because Time is Money)
 
@@ -35,37 +42,59 @@ The system generates multiple email variations, picks the best one, and sends it
    ```
 
 3. **Set up your environment variables:**
-   Create a `.env` file in the root directory:
+   Copy the example environment file and customize it:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Then edit the `.env` file with your actual API keys:
    ```env
    OPENAI_API_KEY=your_openai_api_key_here
    SENDGRID_API_KEY=your_sendgrid_api_key_here
+   SENDGRID_FROM_EMAIL=your_verified_sender@yourcompany.com
    ```
-
-4. **Configure your email settings:**
-   Edit `src/email_agent.py` and update:
-   - `from_email`: Your verified SendGrid sender email
-   - `to_email`: Your recipient email (or make it dynamic!)
 
 ### Running the Magic
 
-Fire up your AI sales team:
+Fire up your AI sales team with the new web interface:
 
 ```bash
 uv run src/app.py
 ```
 
-That's it! The system will prompt you for a message, then watch as your AI agents collaborate to create the perfect sales email.
+Then open your browser to `http://localhost:7860` and enjoy the beautiful interface!
+
+## 🎨 Using the Web Interface
+
+The new Gradio interface makes it super easy to generate personalized sales emails:
+
+### 🏢 Company Information
+- **Company Name**: Your business name
+- **Company Description**: What your company does (be specific!)
+
+### ✍️ Email Signer Information  
+- **Signer Name**: Who's sending the email
+- **Signer Title**: Their role (Sales Director, CEO, etc.)
+
+### 🎯 Target Prospect Information
+- **Prospect Name**: Optional but recommended for personalization
+- **Prospect Email**: Where to send the email
+
+### 💬 Sales Context
+- **Context/Message**: The trigger for this outreach (funding news, pain points, etc.)
+
+Click "Generate Personalized Email" and watch the magic happen!
 
 ## 🏗️ Architecture (For the Curious Minds)
 
 This system follows a hierarchical agent pattern:
 
 ```
-User Input → Sales Manager Agent → [Sales Rep Agent 1, 2, 3] → Email Agent → SendGrid → 📧
-```
-
+Web UI → Sales Manager Agent → [Sales Rep Agent 1, 2, 3] → Email Agent → SendGrid → 📧
+````
+- **Gradio Interface**: Modern web UI for easy interaction
 - **Sales Manager**: Orchestrates the whole show, tries all three sales approaches
-- **Sales Reps**: Each has a unique personality and writing style
+- **Sales Reps**: Each has a unique personality and writing style (Professional, Witty, Concise)
 - **Email Agent**: Handles subject lines, HTML formatting, and delivery
 - **Function Tools**: Custom tools for email sending and formatting
 
@@ -73,6 +102,7 @@ User Input → Sales Manager Agent → [Sales Rep Agent 1, 2, 3] → Email Agent
 
 - **🐍 Python 3.11+**: The foundation
 - **🤖 OpenAI Agents**: The brain power
+- **🎨 Gradio**: Beautiful web interface
 - **📨 SendGrid**: The delivery system
 - **⚡ UV**: Lightning-fast package management
 - **🔧 Python-dotenv**: Environment management
@@ -81,12 +111,19 @@ User Input → Sales Manager Agent → [Sales Rep Agent 1, 2, 3] → Email Agent
 
 Want to make it your own? Here's where the magic happens:
 
+### Environment Variables
+All configuration is now handled through environment variables:
+- `OPENAI_API_KEY`: Your OpenAI API key
+- `SENDGRID_API_KEY`: Your SendGrid API key  
+- `SENDGRID_FROM_EMAIL`: Your verified sender email address
+
 ### Add New Sales Rep Personalities
 Edit `src/sales_manager_agent.py` and create new agent instructions:
 
 ```python
 instructions_4 = """
-You are a [your style] sales agent working for ComplAI...
+You are [your style] working for {company_name}, 
+{company_description}. You write [your approach] emails...
 """
 ```
 
@@ -94,29 +131,31 @@ You are a [your style] sales agent working for ComplAI...
 Modify the instructions in `src/email_agent.py` to change:
 - Subject line generation approach
 - HTML formatting style
-- Email structure
+- Email structure and signature
 
-### Target Different Companies
-Update the company information in the agent instructions to pitch different products or services.
+### Interface Customization
+The Gradio interface can be customized in `src/app.py`:
+- Change themes and styling
+- Add new input fields
+- Modify the layout and components
 
 ## 📁 Project Structure
-
-```
 sdr-agent/
 ├── src/
-│   ├── app.py                 # Main entry point
-│   ├── sales_manager_agent.py # Orchestration logic
-│   └── email_agent.py         # Email formatting & sending
-├── pyproject.toml            # Project config & dependencies
-├── uv.lock                   # Dependency lock file
-└── README.md                 # You are here!
-```
+│ ├── app.py # Gradio web interface & main entry point
+│ ├── sales_manager_agent.py # Orchestration logic with dynamic prompting
+│ └── email_agent.py # Email formatting & sending with env vars
+├── pyproject.toml # Project config & dependencies
+├── uv.lock # Dependency lock file
+├── .env.example # Environment variables template
+└── README.md # You are here!
 
 ## 🤝 Contributing
 
-Got ideas to make this even more awesome? We'd love to hear them! Whether it's:
+Got ideas to make this even more awesome? I'd love to hear them! Whether it's:
 - New agent personalities
 - Better email templates  
+- UI/UX improvements
 - Integration with other email providers
 - Performance improvements
 
@@ -129,9 +168,18 @@ MIT License - because sharing is caring! See the [LICENSE](LICENSE) file for the
 ## 🆘 Need Help?
 
 - Check the issues page for common problems
-- Make sure your API keys are properly configured
-- Ensure your SendGrid sender email is verified
-- Remember: the agents are only as good as the instructions you give them!
+- Make sure your API keys are properly configured in the `.env` file
+- Ensure your SendGrid sender email is verified and set in `SENDGRID_FROM_EMAIL`
+- Use the web interface for the best experience - it's much more user-friendly than the old CLI!
+- Remember: the agents are only as good as the context and instructions you give them!
+
+## 🔄 Recent Updates
+
+- ✅ **Gradio Web Interface**: Beautiful, responsive UI replaces command-line interface
+- ✅ **Dynamic Personalization**: Full customization of company, signer, and prospect details
+- ✅ **Environment Variables**: Configurable sender email via `SENDGRID_FROM_EMAIL`
+- ✅ **Progress Tracking**: Real-time feedback on email generation process
+- ✅ **Better Error Handling**: Clear error messages in the web interface
 
 ---
 
