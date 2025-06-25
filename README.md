@@ -1,3 +1,9 @@
+---
+title: sdr-agent
+app_file: src/app.py
+sdk: gradio
+sdk_version: 5.34.1
+---
 # 🤖 SDR Agent: Your AI-Powered Sales Email Dream Team
 
 Welcome to the future of cold outreach! This isn't just another email automation tool – it's a sophisticated AI agent system with a modern web interface that revolutionizes how you generate personalized sales emails. Think of it as having a whole sales team working 24/7, except they never need coffee breaks and they're powered by cutting-edge AI.
